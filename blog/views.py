@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Tag
-
+from django.http import HttpResponse
 
 def post_list(request):
     qs = Post.objects.all()
     return render(request, 'blog/post_list.html',
                   {'post_list': qs})
-
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -20,9 +19,3 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html',
                   {'post': post, 'my_tag': my_tag})
 
-
-def post_new(request):
-    print('request.GET:', request.GET)
-    print('request.POST:', request.POST)
-    print('request.FILES:', request.FILES)
-    return render(request, 'shop/item_form.html')

@@ -3,7 +3,6 @@ from pytz import timezone  # 현지 시각 출력을 위하여
 from django.conf import settings
 from django.urls import reverse
 
-
 def local_time(input_time):
     fmt = '%Y-%m-%d %H:%M'
     my_zone = timezone(settings.TIME_ZONE)
@@ -66,7 +65,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         # return reverse('blog:post_detail', args=[self.pk])
         return reverse('blog:post_detail', kwargs={'pk': self.pk})
-
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE,

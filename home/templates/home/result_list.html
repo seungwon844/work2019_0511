@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+
+
+
+{% block content %}
+            {% for item in result_list %}
+                <a href="{{ item.get_absolute_url }}">
+                        {{ item.name }}
+                    </a>
+                <br/>
+                {{ item.desc|truncatechars:15 }}
+                <br/>
+                {{ item.price }}
+                <br/>
+              {{ item.photo }}
+                <br/>
+            {% endfor %}
+
+{#    <h4>최근 글 3개</h4>#}
+<br/>
+            {% for post in result_list %}
+            {{ post.author }}
+                <br/>
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}
+                      </a>
+                <br/>
+                {{ post.short_content }}
+                <br/>
+                {{ post.created_at }}
+                <br/>
+                {{ post.updated_at }}
+                <br/>
+                {{ post.tagged }}
+                <br/>
+
+           {% endfor %}
+  <br/>
+
+{% endblock %}

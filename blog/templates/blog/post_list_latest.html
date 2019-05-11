@@ -1,0 +1,36 @@
+{% extends './layout.html' %}
+{% block content %}
+    {{ block.super }}
+    <h5>post_list 테이블 형식 출력</h5>
+    <table>
+        <thead>
+            <th>id</th>
+            <th>게시자</th>
+            <th>제목</th>
+            <th>간략 내용</th>
+            <th>작성 일시</th>
+            <th>수정 일시</th>
+            <th>태그 집합</th>
+        </thead>
+        <tbody>
+        {% for post in post_list_latest %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>{{ post.author }}</td>
+            <td>
+                <a href="{{ post.get_absolute_url }}">
+{#                <a href="/blog/{{ post.pk }}">#}
+                    {# href="blog/..."로 하면 오류!!! #}
+                    {{ post.title }}
+                </a>
+            </td>
+            <td>{{ post.short_content }}</td>
+            <td>{{ post.created }}</td>
+            <td>{{ post.updated_at }}</td>
+            <td>{{ post.tagged }}</td>
+        </tr>
+       {% endfor %}
+        </tbody>
+    </table><br/>
+
+{% endblock %}
